@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>平成警備株式会社</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Kaisei+Opti:wght@400;700&family=Shippori+Mincho:wght@400;500;600&family=M+PLUS+Rounded+1c:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'M PLUS Rounded 1c',sans-serif;color:#2a3a2a;background:#f8faf4;}
+
+  nav{
+    position:sticky;top:0;z-index:100;
+    background:rgba(248,251,244,0.93);backdrop-filter:blur(10px);
+    border-bottom:1px solid #d0e8c0;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:0 2.5rem;height:62px;
+  }
+  .nav-logo{display:flex;align-items:center;gap:10px;}
+  .logo-leaf{
+    width:32px;height:32px;background:#72b864;border-radius:50% 50% 50% 0;
+    display:flex;align-items:center;justify-content:center;
+    color:#fff;font-size:13px;font-weight:500;font-family:'Shippori Mincho',serif;
+    transform:rotate(-45deg);
+  }
+  .logo-leaf span{transform:rotate(45deg);display:block;}
+  .logo-text{font-family:'Shippori Mincho',serif;font-size:15px;color:#2e4228;letter-spacing:0.1em;font-weight:500;}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{color:#618a52;text-decoration:none;font-size:12px;letter-spacing:0.08em;font-weight:400;transition:color 0.2s;}
+  .nav-links a:hover{color:#3a6a2a;}
+  .cta-nav{
+    background:#72b864;color:#fff !important;padding:7px 20px;
+    border-radius:20px;font-size:12px !important;font-weight:500 !important;letter-spacing:0.06em;
+  }
+
+  .hero{position:relative;height:520px;overflow:hidden;}
+  .hero-img{width:100%;height:100%;object-fit:cover;filter:brightness(0.68) saturate(0.85);}
+  .hero-overlay{
+    position:absolute;inset:0;
+    background:linear-gradient(160deg,rgba(20,45,15,0.25) 0%,rgba(20,45,15,0.6) 100%);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:2rem;
+  }
+  .hero-eyebrow{font-size:11px;letter-spacing:0.3em;color:rgba(255,255,255,0.7);margin-bottom:18px;font-weight:300;}
+  .hero-title{
+    font-family:'Shippori Mincho',serif;color:#fff;
+    font-size:38px;font-weight:400;line-height:1.8;letter-spacing:0.12em;
+    margin-bottom:14px;text-shadow:0 2px 16px rgba(0,0,0,0.25);
+  }
+  .hero-accent{color:#b8e89e;font-weight:600;}
+  .hero-sub{color:rgba(255,255,255,0.75);font-size:13px;letter-spacing:0.12em;margin-bottom:30px;font-weight:300;}
+  .hero-btn{
+    border:1px solid rgba(255,255,255,0.65);color:#fff;
+    padding:11px 34px;border-radius:28px;font-size:13px;cursor:pointer;
+    font-family:'M PLUS Rounded 1c',sans-serif;letter-spacing:0.12em;
+    text-decoration:none;display:inline-block;background:transparent;
+  }
+  .hero-btn:hover{background:rgba(255,255,255,0.1);}
+
+  .band{
+    background:#fff;border-top:1px solid #e0ecd6;border-bottom:1px solid #e0ecd6;
+    display:grid;grid-template-columns:repeat(4,1fr);
+  }
+  .band-item{padding:24px 16px;text-align:center;border-right:1px solid #e8f2e0;}
+  .band-item:last-child{border-right:none;}
+  .band-num{font-size:30px;font-weight:500;color:#5aaa4a;font-family:'Kaisei Opti',serif;line-height:1;}
+  .band-unit{font-size:13px;color:#5aaa4a;font-weight:400;}
+  .band-label{font-size:11px;color:#90b888;margin-top:5px;letter-spacing:0.06em;}
+
+  section{padding:72px 2.5rem;}
+  .section-inner{max-width:720px;margin:0 auto;}
+  .section-label{font-size:10px;letter-spacing:0.28em;color:#90c878;font-weight:500;margin-bottom:6px;}
+  .section-rule{width:28px;height:1px;background:#90c878;margin-bottom:20px;}
+  .section-title{font-family:'Shippori Mincho',serif;font-size:24px;font-weight:500;color:#2a3a22;margin-bottom:28px;line-height:1.7;letter-spacing:0.08em;}
+  .section-title.white{color:#fff;}
+  .bg-white{background:#fff;}
+  .bg-sage{background:#f0f6ea;}
+  .bg-dark{background:#223322;}
+
+  .photo-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px;}
+  .photo-card{position:relative;border-radius:12px;overflow:hidden;height:200px;}
+  .photo-card img{width:100%;height:100%;object-fit:cover;filter:saturate(0.88);}
+  .photo-caption{
+    position:absolute;bottom:0;left:0;right:0;
+    background:linear-gradient(transparent,rgba(15,35,10,0.65));
+    padding:22px 14px 12px;
+    font-size:12px;color:rgba(255,255,255,0.92);letter-spacing:0.1em;
+    font-family:'Shippori Mincho',serif;font-weight:400;
+  }
+
+  .guard-section{
+    display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;margin-bottom:16px;
+  }
+  .guard-photo{
+    border-radius:12px;overflow:hidden;height:260px;position:relative;
+  }
+  .guard-photo img{width:100%;height:100%;object-fit:cover;object-position:top;filter:saturate(0.85);}
+  .guard-text p{font-size:14px;line-height:2.2;color:#4a5e42;font-weight:300;}
+  .guard-tag{
+    display:inline-block;background:#eaf4e0;color:#5aaa4a;
+    font-size:11px;padding:4px 12px;border-radius:12px;margin-bottom:12px;letter-spacing:0.06em;
+  }
+
+  .msg-wrap{display:flex;gap:28px;align-items:flex-start;}
+  .msg-photo{
+    width:90px;height:110px;background:#d0eac0;border-radius:10px;flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;
+    color:#4a8040;font-size:11px;text-align:center;line-height:1.5;font-weight:300;
+  }
+  .ceo-name{font-size:18px;font-weight:500;color:#2a3a22;margin-bottom:3px;font-family:'Shippori Mincho',serif;letter-spacing:0.08em;}
+  .ceo-role{font-size:11px;color:#7ab86a;margin-bottom:14px;letter-spacing:0.12em;}
+  .msg-body{font-size:14px;line-height:2.2;color:#4a5e42;font-weight:300;}
+
+  .info-table{width:100%;border-collapse:collapse;font-size:13px;}
+  .info-table tr{border-bottom:1px solid #e4f0dc;}
+  .info-table tr:last-child{border-bottom:none;}
+  .info-table th{width:160px;padding:14px 16px;text-align:left;background:#f0f8e8;color:#4a8040;font-weight:500;letter-spacing:0.04em;}
+  .info-table td{padding:14px 16px;color:#2a3a22;font-weight:300;}
+
+  .svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .svc-card{
+    background:#fff;border:1px solid #dceedd;border-radius:12px;
+    padding:22px;border-left:3px solid #72b864;
+  }
+  .svc-icon{font-size:24px;margin-bottom:10px;}
+  .svc-name{font-size:15px;font-weight:500;color:#2a3a22;margin-bottom:8px;font-family:'Shippori Mincho',serif;letter-spacing:0.04em;}
+  .svc-desc{font-size:12px;color:#6a8a5a;line-height:2;font-weight:300;}
+
+  .ach-list{display:grid;gap:12px;}
+  .ach-item{
+    background:#fff;border:1px solid #dceedd;border-radius:12px;
+    padding:16px 20px;display:flex;align-items:center;gap:16px;
+  }
+  .ach-yr{min-width:58px;font-size:12px;font-weight:500;color:#72b864;letter-spacing:0.06em;font-family:'Shippori Mincho',serif;}
+  .ach-dot{width:8px;height:8px;background:#b0dca0;border-radius:50%;flex-shrink:0;}
+  .ach-ttl{font-size:14px;font-weight:500;color:#2a3a22;margin-bottom:3px;}
+  .ach-sub{font-size:12px;color:#7aaa62;line-height:1.6;font-weight:300;}
+
+  .rec-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px;}
+  .rec-card{background:#fff;border:1px solid #dceedd;border-radius:12px;padding:20px;}
+  .rec-num{font-size:22px;font-weight:400;color:#c8e8b8;font-family:'Kaisei Opti',serif;margin-bottom:6px;}
+  .rec-ttl{font-size:14px;font-weight:500;color:#2a3a22;margin-bottom:6px;}
+  .rec-body{font-size:12px;color:#6a8a5a;line-height:1.9;font-weight:300;}
+
+  .contact-form{background:#2a4028;border-radius:14px;padding:30px;border:1px solid #3a6038;}
+  .form-group{margin-bottom:18px;}
+  .form-label{display:block;font-size:11px;font-weight:400;color:#90c878;margin-bottom:6px;letter-spacing:0.08em;}
+  .form-required{color:#a8d890;margin-left:4px;font-size:10px;}
+  .form-input{
+    width:100%;background:#1e3020;border:1px solid #3a6038;border-radius:8px;
+    padding:10px 14px;font-size:13px;color:#c8e8b0;
+    font-family:'M PLUS Rounded 1c',sans-serif;outline:none;
+  }
+  .form-input::placeholder{color:#3a5838;}
+  .form-input:focus{border-color:#72b864;}
+  textarea.form-input{resize:vertical;height:100px;}
+  .submit-btn{
+    width:100%;background:#72b864;color:#fff;border:none;border-radius:24px;
+    padding:13px;font-size:14px;font-weight:500;cursor:pointer;
+    font-family:'M PLUS Rounded 1c',sans-serif;letter-spacing:0.1em;margin-top:4px;
+  }
+  .submit-btn:hover{background:#64a856;}
+
+  .text-center{text-align:center;}
+
+  footer{background:#182818;padding:32px 2.5rem;text-align:center;}
+  .footer-logo{font-family:'Shippori Mincho',serif;color:#3a6030;font-size:14px;margin-bottom:8px;font-weight:400;letter-spacing:0.12em;}
+  .footer-copy{font-size:11px;color:#223020;letter-spacing:0.08em;}
+
+  .btn-outline{
+    display:inline-block;border:1px solid #72b864;color:#72b864;
+    padding:10px 32px;border-radius:24px;font-size:13px;cursor:pointer;
+    font-family:'M PLUS Rounded 1c',sans-serif;letter-spacing:0.1em;
+    text-decoration:none;background:transparent;
+  }
+  .btn-outline:hover{background:#f0f6ea;}
+
+  @media (max-width:640px){
+    nav{padding:0 1rem;flex-direction:column;height:auto;}
+    .nav-links{display:none;}
+    .hero{height:400px;}
+    .hero-title{font-size:28px;}
+    .band{grid-template-columns:repeat(2,1fr);}
+    section{padding:48px 1.5rem;}
+    .guard-section{grid-template-columns:1fr;gap:16px;}
+    .msg-wrap{flex-direction:column;align-items:center;text-align:center;}
+    .svc-grid{grid-template-columns:1fr;}
+    .rec-grid{grid-template-columns:1fr;}
+    .info-table th{width:140px;}
+    .photo-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="logo-leaf"><span>平</span></div>
+    <div class="logo-text">平成警備株式会社</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#city">会社概要</a></li>
+    <li><a href="#service">サービス</a></li>
+    <li><a href="#achievements">実績</a></li>
+    <li><a href="#recruit">採用</a></li>
+    <li><a href="#contact" class="cta-nav">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<div class="hero">
+  <img class="hero-img"
+    src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Hiroshima_castle_edit2.jpg/1280px-Hiroshima_castle_edit2.jpg"
+    alt="広島城">
+  <div class="hero-overlay">
+    <div class="hero-eyebrow">HIROSHIMA · SECURITY · SINCE 1994</div>
+    <h1 class="hero-title">広島の街を、<br><span class="hero-accent">安心</span>で包む。</h1>
+    <p class="hero-sub">地域とともに、誠実に。平成警備株式会社</p>
+    <a href="#service" class="hero-btn">サービスを見る</a>
+  </div>
+</div>
+
+<div class="band">
+  <div class="band-item">
+    <div><span class="band-num">30</span><span class="band-unit">年</span></div>
+    <div class="band-label">創業からの実績</div>
+  </div>
+  <div class="band-item">
+    <div><span class="band-num">150</span><span class="band-unit">名+</span></div>
+    <div class="band-label">在籍警備員数</div>
+  </div>
+  <div class="band-item">
+    <div><span class="band-num">500</span><span class="band-unit">件+</span></div>
+    <div class="band-label">年間警備実績</div>
+  </div>
+  <div class="band-item">
+    <div><span class="band-num">98</span><span class="band-unit">%</span></div>
+    <div class="band-label">顧客継続率</div>
+  </div>
+</div>
+
+<section class="bg-white" id="city">
+  <div class="section-inner">
+    <div class="section-label">OUR CITY</div>
+    <div class="section-rule"></div>
+    <h2 class="section-title">私たちのまち、広島</h2>
+    <div class="photo-grid">
+      <div class="photo-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/Hiroshima_castle_edit2.jpg/640px-Hiroshima_castle_edit2.jpg" alt="広島城">
+        <div class="photo-caption">広島城</div>
+      </div>
+      <div class="photo-card">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Shukkeien_Garden_in_Hiroshima%2C_Japan.jpg/640px-Shukkeien_Garden_in_Hiroshima%2C_Japan.jpg" alt="縮景園">
+        <div class="photo-caption">縮景園</div>
+      </div>
+    </div>
+    <p style="font-size:14px;line-height:2.2;color:#4a5e42;font-weight:300;">
+      広島城の緑と縮景園の静けさに象徴されるように、この街には人々の暮らしを支える
+      深い歴史と文化があります。平成警備は、そんな広島の街で30年にわたり
+      地域の安全を守り続けてきました。
+    </p>
+  </div>
+</section>
+
+<section class="bg-sage">
+  <div class="section-inner">
+    <div class="section-label">OUR STAFF</div>
+    <div class="section-rule"></div>
+    <h2 class="section-title">現場を支えるプロフェッショナル</h2>
+    <div class="guard-section">
+      <div class="guard-photo">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=520&fit=crop&crop=top" alt="警備員">
+      </div>
+      <div class="guard-text">
+        <div class="guard-tag">Trained Professionals</div>
+        <p>
+          弊社の警備員は全員が法定研修を修了し、<br>
+          厳格な社内基準をクリアしたプロフェッショナルです。<br><br>
+          礼節を大切にした対応と、緊急時にも冷静に動ける判断力。
+          その一礼一礼に、私たちの誠実さが込められています。<br><br>
+          お客様と地域の皆様に、安心と信頼をお届けします。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-white">
+  <div class="section-inner">
+    <div class="section-label">MESSAGE</div>
+    <div class="section-rule"></div>
+    <h2 class="section-title">代表メッセージ</h2>
+    <div class="msg-wrap">
+      <div class="msg-photo">代表者<br>写真</div>
+      <div>
+        <div class="ceo-name">山田 太郎</div>
+        <div class="ceo-role">代表取締役社長</div>
+        <p class="msg-body">
+          弊社は「誠実」「信頼」「安心」を経営理念に掲げ、広島の地で警備業に携わってまいりました。
+          警備員一人ひとりが高い使命感を持ち、丁寧で確かな業務を提供することをお約せいいたします。
+          地域の皆様とともに歩み、より安全な社会の実現に貢献してまいります。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-sage">
+  <div class="section-inner">
+    <div class="section-label">COMPANY</div>
+    <div class="section-rule"></div>
+    <h2 class="section-title">会社概要</h2>
+    <table class="info-table">
+      <tr><th>会社名</th><td>平成警備株式会社</td></tr>
+      <tr><th>所在地</th><td>〒730-0000 広島県広島市○○区○○町X-X-X</td></tr>
+      <tr><th>設立</th><td>平成○年○月</td></tr>
+      <tr><th>資本金</th><td>○○○万円</td></tr>
+      <tr><th>従業員数</th><td>○○名</td></tr>
+      <tr><th>事業内容</th><td>施設警備・交通誘導・イベント警備・身辺警護</td></tr>
+      <tr><th>認定番号</th><td>広島県公安委員会認定 第○○○号</td></tr>
+    </table>
+  </div>
+</section>
+
+<section class="bg-white" id="service">
+  <div class="section-inner">
+    <div class="section-label">SERVICE</div>
+    <div class="section-rule"></div>
+    <h2 class="section-title">サービス内容</h2>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-icon">🏢</div>
+        <div class="svc-name">施設警備</div>
+        <p class="svc-desc">商業施設・オフィスビル・工場などへの常駐警備。24時間対応で不審者の侵入防止や巡回業務を行います。</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🚦</div>
+        <div class="svc-name">交通誘導警備</div>
+        <p class="svc-desc">工事現場・駐車場・イベント会場での交通整理。資格保有者が安全な誘導を行います。</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🎪</div>
+        <div class="svc-name">イベント警備</div>
+        <p class="svc-desc">コンサート・スポーツ大会・地域イベントの入退場管理・会場内安全確保を担います。</p>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">🛡️</div>
+        <div class="svc-name">身辺警護</div>
+        <p class="svc-desc">要人・VIPの身辺警護業務。経験豊富な専門スタッフがエスコートを行います。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-sage" id="achievements">
+  <div class="section-inner">
+    <div class="section-label">ACHIEVEMENTS</div>
+    <div class="section-rule"></div>
+    <h2 class="section-title">主な実績</h2>
+    <div class="ach-list">
+      <div class="ach-item">
+        <div class="ach-yr">2024年</div>
+        <div class="ach-dot"></div>
+        <div>
+          <div class="ach-ttl">広島市主要商業施設 常駐警備受託</div>
+          <div class="ach-sub">延べ床面積5万㎡超の大型商業施設にて施設警備を年間通じて担当</div>
+        </div>
+      </div>
+      <div class="ach-item">
+        <div class="ach-yr">2023年</div>
+        <div class="ach-dot"></div>
+        <div>
+          <div class="ach-ttl">広島県内大規模イベント警備 実施</div>
+          <div class="ach-sub">来場者数3万人超の野外イベントにて入退場管理・安全確保を担当</div>
+        </div>
+      </div>
+      <div class="ach-item">
+        <div class="ach-yr">2022年</div>
+        <div class="ach-dot"></div>
+        <div>
+          <div class="ach-ttl">官公庁施設 警備業務受託</div>
+          <div class="ach-sub">広島市内行政機関にて24時間常駐警備を実施。高いセキュリティ基準に対応</div>
+        </div>
+      </div>
+      <div class="ach-item">
+        <div class="ach-yr">2021年</div>
+        <div class="ach-dot"></div>
+        <div>
+          <div class="ach-ttl">大規模道路工事 交通誘導警備</div>
+          <div class="ach-sub">国道工事現場における長期交通誘導警備。延べ派遣数1,200名超</div>
+        </div>
+      </div>
+      <div class="ach-item">
+        <div class="ach-yr">2019年</div>
+        <div class="ach-dot"></div>
+        <div>
+          <div class="ach-ttl">G20関連警備への参加</div>
+          <div class="ach-sub">国際イベント関連警備業務に県内業者として参画。高水準の品質を提供</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-white" id="recruit">
+  <div class="section-inner">
+    <div class="section-label">RECRUIT</div>
+    <div class="section-rule"></div>
+    <h2 class="section-title">採用情報</h2>
+    <div class="rec-grid">
+      <div class="rec-card">
+        <div class="rec-num">01</div>
+        <div class="rec-ttl">未経験者歓迎</div>
+        <p class="rec-body">入社後の研修が充実。警備の知識・スキルをゼロから習得できます。</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">02</div>
+        <div class="rec-ttl">シフト制で働きやすい</div>
+        <p class="rec-body">週2日〜OK。ライフスタイルに合わせた柔軟な勤務形態。</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">03</div>
+        <div class="rec-ttl">資格取得支援あり</div>
+        <p class="rec-body">警備業務検定など各種資格の取得費用を会社がサポートします。</p>
+      </div>
+      <div class="rec-card">
+        <div class="rec-num">04</div>
+        <div class="rec-ttl">地域密着・安定経営</div>
+        <p class="rec-body">広島での長年の実績。腰を落ち着けて働ける環境があります。</p>
+      </div>
+    </div>
+    <div class="text-center">
+      <a href="#contact" class="btn-outline">採用エントリーはこちら</a>
+    </div>
+  </div>
+</section>
+
+<section class="bg-dark" id="contact">
+  <div class="section-inner">
+    <div class="section-label" style="color:#90c878;">CONTACT</div>
+    <div class="section-rule" style="background:#90c878;"></div>
+    <h2 class="section-title white">お問い合わせ</h2>
+    <div class="contact-form">
+      <div class="form-group">
+        <label class="form-label">お名前<span class="form-required">必須</span></label>
+        <input class="form-input" type="text" placeholder="山田 太郎">
+      </div>
+      <div class="form-group">
+        <label class="form-label">会社名・団体名</label>
+        <input class="form-input" type="text" placeholder="株式会社○○">
+      </div>
+      <div class="form-group">
+        <label class="form-label">メールアドレス<span class="form-required">必須</span></label>
+        <input class="form-input" type="email" placeholder="example@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">電話番号</label>
+        <input class="form-input" type="tel" placeholder="082-000-0000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">お問い合わせ内容<span class="form-required">必須</span></label>
+        <textarea class="form-input" placeholder="ご相談内容をご記入ください"></textarea>
+      </div>
+      <button class="submit-btn">送信する</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">平成警備株式会社</div>
+  <div class="footer-copy">© 2025 Heisei Security Co., Ltd. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
