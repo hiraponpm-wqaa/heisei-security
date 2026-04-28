@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>平成警備株式会社</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans JP', sans-serif; color: #1a2e1a; background: #f4f7f4; }
+
+  nav {
+    background: #1a3d1a;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 64px; position: sticky; top: 0; z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Noto Serif JP', serif; color: #fff; font-size: 16px;
+    font-weight: 700; letter-spacing: 0.05em; display: flex; align-items: center; gap: 10px;
+  }
+  .logo-badge {
+    width: 34px; height: 34px; background: #8bc34a; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 17px; font-weight: 700; color: #1a3d1a; font-family: 'Noto Serif JP', serif;
+  }
+  .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+  .nav-links a { color: #a8c8a0; text-decoration: none; font-size: 13px; letter-spacing: 0.04em; transition: color 0.2s; }
+  .nav-links a:hover { color: #fff; }
+  .contact-btn {
+    background: #8bc34a; color: #1a3d1a !important; padding: 6px 18px;
+    border-radius: 3px; font-weight: 700 !important; font-size: 12px !important; letter-spacing: 0.08em;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #1a3d1a 0%, #2d6a2d 55%, #1e4a1e 100%);
+    padding: 80px 2.5rem; position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: ''; position: absolute; right: -40px; top: -80px;
+    width: 380px; height: 380px; border: 70px solid rgba(139,195,74,0.08); border-radius: 50%;
+  }
+  .hero::after {
+    content: ''; position: absolute; right: 100px; bottom: -100px;
+    width: 220px; height: 220px; border: 45px solid rgba(139,195,74,0.05); border-radius: 50%;
+  }
+  .hero-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-block; border: 1px solid #8bc34a; color: #8bc34a;
+    font-size: 11px; letter-spacing: 0.15em; padding: 4px 12px; border-radius: 2px; margin-bottom: 20px;
+  }
+  .hero h1 {
+    font-family: 'Noto Serif JP', serif; color: #fff; font-size: 38px;
+    font-weight: 700; line-height: 1.55; letter-spacing: 0.04em; margin-bottom: 16px;
+  }
+  .hero-sub { color: #80b080; font-size: 15px; line-height: 1.9; margin-bottom: 36px; max-width: 520px; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary {
+    background: #8bc34a; color: #1a3d1a; padding: 13px 30px; border: none;
+    border-radius: 3px; font-size: 14px; font-weight: 700; cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.06em; text-decoration: none; display: inline-block;
+  }
+  .btn-secondary {
+    background: transparent; color: #fff; padding: 13px 30px;
+    border: 1px solid rgba(255,255,255,0.3); border-radius: 3px;
+    font-size: 14px; cursor: pointer; font-family: 'Noto Sans JP', sans-serif;
+    letter-spacing: 0.06em; text-decoration: none; display: inline-block;
+  }
+
+  .stats-bar {
+    background: #fff; border-bottom: 1px solid #d4e6d4;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+  }
+  .stat-item {
+    padding: 28px 16px; text-align: center; border-right: 1px solid #d4e6d4;
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 32px; font-weight: 700; color: #2d6a2d; font-family: 'Noto Serif JP', serif; line-height: 1; }
+  .stat-unit { font-size: 14px; font-weight: 700; color: #2d6a2d; }
+  .stat-label { font-size: 11px; color: #7a9a7a; margin-top: 6px; letter-spacing: 0.05em; }
+
+  section { padding: 72px 2.5rem; }
+  .section-inner { max-width: 860px; margin: 0 auto; }
+  .section-label { font-size: 11px; letter-spacing: 0.2em; color: #5a9a3a; font-weight: 500; margin-bottom: 8px; }
+  .section-label.light { color: #8bc34a; }
+  .divider { width: 32px; height: 2px; background: #8bc34a; margin-bottom: 24px; }
+  .section-title { font-family: 'Noto Serif JP', serif; font-size: 26px; font-weight: 700; color: #1a3d1a; margin-bottom: 36px; line-height: 1.5; }
+  .section-title.white { color: #fff; }
+  .bg-white { background: #fff; }
+  .bg-gray { background: #eef4ee; }
+  .bg-dark { background: #1a3d1a; }
+
+  .ceo-card { display: flex; gap: 36px; align-items: flex-start; }
+  .ceo-photo {
+    width: 110px; height: 130px; background: #c8e6b0; border-radius: 4px;
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    color: #4a7a30; font-size: 12px; text-align: center; line-height: 1.5;
+  }
+  .ceo-name { font-size: 20px; font-weight: 700; color: #1a3d1a; margin-bottom: 4px; font-family: 'Noto Serif JP', serif; }
+  .ceo-title-text { font-size: 12px; color: #6b9a6b; margin-bottom: 16px; letter-spacing: 0.08em; }
+  .ceo-message { font-size: 14px; line-height: 2.1; color: #3a5a3a; }
+
+  .info-grid {
+    display: grid; grid-template-columns: 200px 1fr; gap: 1px;
+    background: #c0d8c0; border: 1px solid #c0d8c0; border-radius: 6px; overflow: hidden;
+  }
+  .info-label { background: #ddefdd; padding: 14px 18px; font-size: 13px; font-weight: 500; color: #3a6a3a; letter-spacing: 0.04em; }
+  .info-value { background: #fff; padding: 14px 18px; font-size: 13px; color: #1a2e1a; }
+
+  .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .service-card {
+    background: #fff; border: 1px solid #c8dfc8; border-radius: 6px;
+    padding: 24px; border-top: 3px solid #2d6a2d;
+  }
+  .service-icon {
+    width: 44px; height: 44px; background: #ddf0cc; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center; margin-bottom: 14px; font-size: 22px;
+  }
+  .service-name { font-size: 16px; font-weight: 700; color: #1a3d1a; margin-bottom: 10px; }
+  .service-desc { font-size: 13px; color: #5a7a5a; line-height: 1.9; }
+
+  .achievements { display: grid; grid-template-columns: 1fr; gap: 14px; }
+  .achievement-item {
+    background: #fff; border: 1px solid #c8dfc8; border-radius: 6px;
+    padding: 18px 22px; display: flex; align-items: center; gap: 18px;
+  }
+  .achievement-year { min-width: 68px; font-size: 13px; font-weight: 700; color: #2d6a2d; font-family: 'Noto Serif JP', serif; letter-spacing: 0.04em; }
+  .achievement-bar { width: 3px; height: 38px; background: #8bc34a; border-radius: 2px; flex-shrink: 0; }
+  .achievement-title { font-size: 14px; font-weight: 700; color: #1a3d1a; margin-bottom: 4px; }
+  .achievement-sub { font-size: 12px; color: #6b9a6b; line-height: 1.6; }
+
+  .recruit-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+  .recruit-point {
+    background: #eef6e6; border-radius: 6px; padding: 18px;
+    display: flex; gap: 14px; align-items: flex-start;
+  }
+  .recruit-num {
+    width: 30px; height: 30px; background: #2d6a2d; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: #8bc34a; font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+  .recruit-text { font-size: 13px; line-height: 1.8; color: #3a5a3a; }
+  .recruit-text strong { display: block; color: #1a3d1a; font-weight: 700; margin-bottom: 4px; font-size: 15px; }
+
+  .contact-form { background: #1e4a1e; border-radius: 6px; padding: 32px; border: 1px solid #2d6a2d; }
+  .form-group { margin-bottom: 20px; }
+  .form-label { display: block; font-size: 12px; font-weight: 500; color: #80b080; margin-bottom: 7px; letter-spacing: 0.06em; }
+  .form-required { color: #8bc34a; margin-left: 4px; font-size: 11px; }
+  .form-input {
+    width: 100%; background: #132d13; border: 1px solid #3a6a3a; border-radius: 4px;
+    padding: 11px 14px; font-size: 14px; color: #c8e6b0;
+    font-family: 'Noto Sans JP', sans-serif; outline: none;
+  }
+  .form-input::placeholder { color: #3a5a3a; }
+  .form-input:focus { border-color: #8bc34a; }
+  textarea.form-input { resize: vertical; height: 110px; }
+  .submit-btn {
+    width: 100%; background: #8bc34a; color: #1a3d1a; border: none; border-radius: 4px;
+    padding: 14px; font-size: 15px; font-weight: 700; cursor: pointer;
+    font-family: 'Noto Sans JP', sans-serif; letter-spacing: 0.1em; margin-top: 4px;
+  }
+  .submit-btn:hover { background: #9dd45a; }
+  .text-center { text-align: center; }
+
+  footer { background: #0d200d; padding: 36px 2.5rem; text-align: center; }
+  .footer-logo { font-family: 'Noto Serif JP', serif; color: #3a6a3a; font-size: 15px; margin-bottom: 8px; }
+  .footer-copy { font-size: 11px; color: #254525; letter-spacing: 0.06em; }
+
+  @media (max-width: 640px) {
+    nav { padding: 0 1rem; }
+    .nav-links { display: none; }
+    .hero { padding: 56px 1.5rem; }
+    .hero h1 { font-size: 26px; }
+    .stats-bar { grid-template-columns: 1fr 1fr; }
+    section { padding: 48px 1.5rem; }
+    .ceo-card { flex-direction: column; }
+    .services-grid { grid-template-columns: 1fr; }
+    .recruit-grid { grid-template-columns: 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">
+    <div class="logo-badge">平</div>
+    平成警備株式会社
+  </div>
+  <ul class="nav-links">
+    <li><a href="#company">会社概要</a></li>
+    <li><a href="#service">サービス</a></li>
+    <li><a href="#achievements">実績</a></li>
+    <li><a href="#recruit">採用情報</a></li>
+    <li><a href="#contact" class="contact-btn">お問い合わせ</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">HIROSHIMA SECURITY COMPANY</div>
+    <h1>あなたの安心を、<br>私たちが守ります。</h1>
+    <p class="hero-sub">
+      平成警備株式会社は、広島を拠点に施設警備・交通誘導・イベント警備など
+      幅広い警備サービスを提供しています。
+      地域に根ざした誠実な警備で、皆様の安全・安心を支えます。
+    </p>
+    <div class="hero-btns">
+      <a href="#service" class="btn-primary">サービスを見る</a>
+      <a href="#contact" class="btn-secondary">お問い合わせ</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat-item">
+    <div><span class="stat-num">30</span><span class="stat-unit">年</span></div>
+    <div class="stat-label">創業からの実績</div>
+  </div>
+  <div class="stat-item">
+    <div><span class="stat-num">150</span><span class="stat-unit">名以上</span></div>
+    <div class="stat-label">在籍警備員数</div>
+  </div>
+  <div class="stat-item">
+    <div><span class="stat-num">500</span><span class="stat-unit">件以上</span></div>
+    <div class="stat-label">年間警備実績</div>
+  </div>
+  <div class="stat-item">
+    <div><span class="stat-num">98</span><span class="stat-unit">%</span></div>
+    <div class="stat-label">顧客継続率</div>
+  </div>
+</div>
+
+<section class="bg-white" id="message">
+  <div class="section-inner">
+    <div class="section-label">MESSAGE</div>
+    <div class="divider"></div>
+    <h2 class="section-title">代表メッセージ</h2>
+    <div class="ceo-card">
+      <div class="ceo-photo">代表者<br>写真</div>
+      <div>
+        <div class="ceo-name">山田 太郎</div>
+        <div class="ceo-title-text">代表取締役社長</div>
+        <p class="ceo-message">
+          弊社は「誠実」「信頼」「安心」を経営理念に掲げ、広島の地で警備業に携わってまいりました。
+          警備員一人ひとりが高い使命感を持ち、丁寧で確かな業務を提供することをお約束いたします。
+          地域の皆様とともに歩み、より安全な社会の実現に貢献してまいります。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-gray" id="company">
+  <div class="section-inner">
+    <div class="section-label">COMPANY</div>
+    <div class="divider"></div>
+    <h2 class="section-title">会社概要</h2>
+    <div class="info-grid">
+      <div class="info-label">会社名</div>
+      <div class="info-value">平成警備株式会社</div>
+      <div class="info-label">所在地</div>
+      <div class="info-value">〒730-0000 広島県広島市○○区○○町X-X-X</div>
+      <div class="info-label">設立</div>
+      <div class="info-value">平成○年○月</div>
+      <div class="info-label">資本金</div>
+      <div class="info-value">○○○万円</div>
+      <div class="info-label">従業員数</div>
+      <div class="info-value">○○名</div>
+      <div class="info-label">事業内容</div>
+      <div class="info-value">施設警備・交通誘導・イベント警備・身辺警護</div>
+      <div class="info-label">認定番号</div>
+      <div class="info-value">広島県公安委員会認定 第○○○号</div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-white" id="service">
+  <div class="section-inner">
+    <div class="section-label">SERVICE</div>
+    <div class="divider"></div>
+    <h2 class="section-title">サービス内容</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🏢</div>
+        <div class="service-name">施設警備</div>
+        <p class="service-desc">商業施設・オフィスビル・工場などへの常駐警備。24時間対応で不審者の侵入防止や巡回業務を行います。</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🚦</div>
+        <div class="service-name">交通誘導警備</div>
+        <p class="service-desc">工事現場・駐車場・イベント会場などでの交通整理。資格保有者が安全な交通誘導を行います。</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🎪</div>
+        <div class="service-name">イベント警備</div>
+        <p class="service-desc">コンサート・スポーツ大会・地域イベントなど各種イベントの入退場管理・会場内の安全確保を担います。</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🛡️</div>
+        <div class="service-name">身辺警護</div>
+        <p class="service-desc">要人・VIPの身辺警護業務。経験豊富な専門スタッフが安全確保のためのエスコートを行います。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-gray" id="achievements">
+  <div class="section-inner">
+    <div class="section-label">ACHIEVEMENTS</div>
+    <div class="divider"></div>
+    <h2 class="section-title">主な実績</h2>
+    <div class="achievements">
+      <div class="achievement-item">
+        <div class="achievement-year">2024年</div>
+        <div class="achievement-bar"></div>
+        <div>
+          <div class="achievement-title">広島市主要商業施設 常駐警備受託</div>
+          <div class="achievement-sub">延べ床面積5万㎡超の大型商業施設にて施設警備を年間通じて担当</div>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <div class="achievement-year">2023年</div>
+        <div class="achievement-bar"></div>
+        <div>
+          <div class="achievement-title">広島県内大規模イベント警備 実施</div>
+          <div class="achievement-sub">来場者数3万人超の野外イベントにて、入退場管理・会場内安全確保を担当</div>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <div class="achievement-year">2022年</div>
+        <div class="achievement-bar"></div>
+        <div>
+          <div class="achievement-title">官公庁施設 警備業務受託</div>
+          <div class="achievement-sub">広島市内の行政機関にて24時間常駐警備を実施。高いセキュリティ基準に対応</div>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <div class="achievement-year">2021年</div>
+        <div class="achievement-bar"></div>
+        <div>
+          <div class="achievement-title">大規模道路工事 交通誘導警備</div>
+          <div class="achievement-sub">国道工事現場における長期交通誘導警備。延べ警備員派遣数1,200名超</div>
+        </div>
+      </div>
+      <div class="achievement-item">
+        <div class="achievement-year">2019年</div>
+        <div class="achievement-bar"></div>
+        <div>
+          <div class="achievement-title">G20関連警備への参加</div>
+          <div class="achievement-sub">国際イベント関連の警備業務に県内業者として参画。高水準の警備品質を提供</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bg-white" id="recruit">
+  <div class="section-inner">
+    <div class="section-label">RECRUIT</div>
+    <div class="divider"></div>
+    <h2 class="section-title">採用情報</h2>
+    <div class="recruit-grid">
+      <div class="recruit-point">
+        <div class="recruit-num">01</div>
+        <div class="recruit-text">
+          <strong>未経験者歓迎</strong>
+          入社後の研修が充実。警備の知識・スキルをゼロから習得できます。
+        </div>
+      </div>
+      <div class="recruit-point">
+        <div class="recruit-num">02</div>
+        <div class="recruit-text">
+          <strong>シフト制で働きやすい</strong>
+          週2日〜OK。ライフスタイルに合わせた柔軟な勤務形態。
+        </div>
+      </div>
+      <div class="recruit-point">
+        <div class="recruit-num">03</div>
+        <div class="recruit-text">
+          <strong>資格取得支援あり</strong>
+          警備業務検定など各種資格の取得費用を会社がサポートします。
+        </div>
+      </div>
+      <div class="recruit-point">
+        <div class="recruit-num">04</div>
+        <div class="recruit-text">
+          <strong>地域密着・安定経営</strong>
+          広島での長年の実績。腰を落ち着けて働ける環境があります。
+        </div>
+      </div>
+    </div>
+    <div class="text-center">
+      <a href="#contact" class="btn-primary">採用エントリーはこちら</a>
+    </div>
+  </div>
+</section>
+
+<section class="bg-dark" id="contact">
+  <div class="section-inner">
+    <div class="section-label light">CONTACT</div>
+    <div class="divider"></div>
+    <h2 class="section-title white">お問い合わせ</h2>
+    <div class="contact-form">
+      <div class="form-group">
+        <label class="form-label">お名前<span class="form-required">必須</span></label>
+        <input class="form-input" type="text" placeholder="山田 太郎">
+      </div>
+      <div class="form-group">
+        <label class="form-label">会社名・団体名</label>
+        <input class="form-input" type="text" placeholder="株式会社○○">
+      </div>
+      <div class="form-group">
+        <label class="form-label">メールアドレス<span class="form-required">必須</span></label>
+        <input class="form-input" type="email" placeholder="example@example.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">電話番号</label>
+        <input class="form-input" type="tel" placeholder="082-000-0000">
+      </div>
+      <div class="form-group">
+        <label class="form-label">お問い合わせ内容<span class="form-required">必須</span></label>
+        <textarea class="form-input" placeholder="ご相談内容をご記入ください"></textarea>
+      </div>
+      <button class="submit-btn">送信する</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">平成警備株式会社</div>
+  <div class="footer-copy">© 2025 Heisei Security Co., Ltd. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
